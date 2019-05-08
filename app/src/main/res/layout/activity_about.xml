@@ -19,7 +19,7 @@
         android:layout_height="@dimen/space_200"
         android:layout_marginTop="@dimen/space_80"
         android:layout_marginBottom="@dimen/space_80"
-        android:src="@mipmap/ic_logo" />
+        android:src="@drawable/ic_logo" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
             android:autoLink="all"
             android:gravity="center_horizontal"
             android:lineSpacingExtra="@dimen/space_20"
-            android:text="Github地址\nhttps://github.com/getActivity/AndroidProject"
+            android:text="但愿人长久，搬砖不再有\nhttps://github.com/getActivity/AndroidProject"
             android:textColor="#222222"
             android:textSize="@dimen/font_size_28px" />
 

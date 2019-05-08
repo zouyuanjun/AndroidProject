@@ -2,14 +2,12 @@ package com.hjq.widget;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
-import android.support.v4.view.ViewCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -24,7 +22,7 @@ import android.widget.EditText;
  *    desc   : 带清除按钮的EditText
  */
 @SuppressLint("AppCompatCustomView")
-public class ClearEditText extends EditText
+public final class ClearEditText extends EditText
         implements View.OnTouchListener, View.OnFocusChangeListener, TextWatcher {
 
     private Drawable mClearIcon;
@@ -64,8 +62,6 @@ public class ClearEditText extends EditText
         super.setOnTouchListener(this);
         super.setOnFocusChangeListener(this);
         super.addTextChangedListener(this);
-
-        ViewCompat.setBackgroundTintList(this, ColorStateList.valueOf(0x99000000));
     }
 
     private void setClearIconVisible(final boolean visible) {

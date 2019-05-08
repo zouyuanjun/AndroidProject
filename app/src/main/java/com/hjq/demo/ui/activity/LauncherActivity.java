@@ -9,12 +9,9 @@ import android.view.animation.ScaleAnimation;
 import com.gyf.barlibrary.BarHide;
 import com.hjq.demo.R;
 import com.hjq.demo.common.MyActivity;
-import com.hjq.image.ImageLoader;
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.Permission;
 import com.hjq.permissions.XXPermissions;
-import com.hjq.toast.ToastUtils;
-import com.hjq.umeng.UmengHelper;
 
 import java.util.List;
 
@@ -26,7 +23,7 @@ import butterknife.BindView;
  *    time   : 2018/10/18
  *    desc   : 启动界面
  */
-public class LauncherActivity extends MyActivity
+public final class LauncherActivity extends MyActivity
         implements OnPermission, Animation.AnimationListener {
 
     @BindView(R.id.iv_launcher_bg)
@@ -42,7 +39,7 @@ public class LauncherActivity extends MyActivity
     }
 
     @Override
-    protected int getTitleBarId() {
+    protected int getTitleId() {
         return 0;
     }
 
@@ -61,14 +58,6 @@ public class LauncherActivity extends MyActivity
     @Override
     protected void initData() {
 
-        // 初始化图片加载器
-        ImageLoader.init(getApplication());
-
-        // 初始化吐司工具类
-        ToastUtils.init(getApplication());
-
-        // 友盟统计
-        UmengHelper.init(getApplication());
     }
 
     private static final int ANIM_TIME = 1000;
@@ -92,7 +81,7 @@ public class LauncherActivity extends MyActivity
         mTextView.startAnimation(ra);
     }
 
-    private void requestFilePermission() {
+    private void requestPermission() {
         XXPermissions.with(this)
                 .permission(Permission.Group.STORAGE)
                 .request(this);
@@ -113,14 +102,14 @@ public class LauncherActivity extends MyActivity
         if (quick) {
             toast("没有权限访问文件，请手动授予权限");
             XXPermissions.gotoPermissionSettings(LauncherActivity.this, true);
-        }else {
+        } else {
             toast("请先授予文件读写权限");
-            getWindow().getDecorView().postDelayed(new Runnable() {
+            postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    requestFilePermission();
+                    requestPermission();
                 }
-            }, 2000);
+            }, 1000);
         }
     }
 
@@ -136,14 +125,14 @@ public class LauncherActivity extends MyActivity
         if (XXPermissions.isHasPermission(LauncherActivity.this, Permission.Group.STORAGE)) {
             hasPermission(null, true);
         }else {
-            requestFilePermission();
+            requestPermission();
         }
     }
 
     @Override
     public boolean isSupportSwipeBack() {
         //不使用侧滑功能
-        return !super.isSupportSwipeBack();
+        return false;
     }
 
     /**
@@ -155,7 +144,7 @@ public class LauncherActivity extends MyActivity
 
     @Override
     public void onAnimationEnd(Animation animation) {
-        requestFilePermission();
+        requestPermission();
     }
 
     @Override
