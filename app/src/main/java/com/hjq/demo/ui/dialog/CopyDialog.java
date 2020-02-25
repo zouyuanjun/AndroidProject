@@ -1,10 +1,10 @@
 package com.hjq.demo.ui.dialog;
 
-import android.support.v4.app.FragmentActivity;
+import android.content.Context;
 import android.view.Gravity;
 
 import com.hjq.base.BaseDialog;
-import com.hjq.base.BaseDialogFragment;
+import com.hjq.base.action.AnimAction;
 import com.hjq.demo.R;
 
 /**
@@ -16,15 +16,14 @@ import com.hjq.demo.R;
 public final class CopyDialog {
 
     public static final class Builder
-            extends BaseDialogFragment.Builder<Builder> {
+            extends BaseDialog.Builder<Builder> {
 
-        public Builder(FragmentActivity activity) {
-            super(activity);
+        public Builder(Context context) {
+            super(context);
 
-            setContentView(R.layout.item_copy);
-            setAnimStyle(BaseDialog.AnimStyle.BOTTOM);
+            setContentView(R.layout.dialog_copy);
+            setAnimStyle(AnimAction.BOTTOM);
             setGravity(Gravity.BOTTOM);
-
         }
     }
 }

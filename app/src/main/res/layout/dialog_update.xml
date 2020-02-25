@@ -1,135 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#01000000"
-    android:gravity="center">
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="0px"
+    tools:context=".ui.dialog.UpdateDialog">
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/update_app_top_bg" />
+            android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_dialog_update_bottom"
-            android:orientation="vertical">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/bg_update_app_top" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:orientation="horizontal">
+                android:layout_gravity="center"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_dialog_update_name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="#333333"
-                    android:textSize="14sp"
-                    tools:text="版本号" />
-
-                <TextView
-                    android:id="@+id/tv_dialog_update_size"
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#666666"
-                    android:textSize="13sp"
-                    tools:text="大小" />
+                    android:text="@string/update_title"
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_update_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    tools:text="3.2.1" />
 
             </LinearLayout>
 
-            <!--这个地方需要设置可以滚动-->
-            <android.support.v4.widget.NestedScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:overScrollMode="never"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:scrollbars="none">
-
-                <TextView
-                    android:id="@+id/tv_dialog_update_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="@dimen/space_20"
-                    android:layout_marginRight="20dp"
-                    android:lineSpacingExtra="5dp"
-                    android:maxHeight="100dp"
-                    android:minHeight="100dp"
-                    android:textColor="#666666"
-                    android:textSize="13sp"
-                    tools:text="更新内容\n更新内容\n更新内容\n更新内容\n更新内容\n更新内容\n更新内容\n更新内容\n更新内容\n更新内容\n更新内容\n更新内容\n更新内容\n更新内容\n" />
-
-            </android.support.v4.widget.NestedScrollView>
-
-            <com.hjq.widget.NumberProgressBar
-                android:id="@+id/pb_dialog_update_progress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="20dp"
-                android:visibility="gone"
-                app:pb_reachedColor="#e94339"
-                app:pb_reachedHeight="4dp"
-                app:pb_textColor="#e94339"
-                app:pb_textSize="@dimen/font_size_24px"
-                app:pb_unreachedColor="#CCCCCC"
-                app:pb_unreachedHeight="3dp" />
-
-            <TextView
-                android:id="@+id/tv_dialog_update_update"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="15dp"
-                android:background="@drawable/bg_dialog_update_button"
-                android:focusable="true"
-                android:gravity="center"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="@string/dialog_update_button"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-
-        </LinearLayout>
+        </FrameLayout>
 
         <LinearLayout
-            android:id="@+id/ll_dialog_update_cancel"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <View
-                android:layout_width="2dp"
-                android:layout_height="50dp"
-                android:background="#d8d8d8" />
-
-            <ImageView
-                android:id="@+id/iv_dialog_update_close"
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/update_app_close" />
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="@string/update_content"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_update_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:lineSpacingExtra="5dp"
+                android:minLines="3"
+                android:textColor="@color/black60"
+                android:textSize="15sp"
+                tools:text="6666" />
+
+            <ProgressBar
+                android:id="@+id/pb_update_progress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="5dp"
+                android:indeterminate="false"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_update_close"
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_transparent"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:text="@string/update_no"
+                    android:textColor="@color/black40"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_update_update"
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_transparent"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="14dp"
+                    android:text="@string/update_yes"
+                    android:textColor="@color/black60"
+                    android:textSize="15sp" />
+            </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</androidx.cardview.widget.CardView>

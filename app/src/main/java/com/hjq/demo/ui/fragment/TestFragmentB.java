@@ -1,15 +1,17 @@
 package com.hjq.demo.ui.fragment;
 
 import android.view.View;
+import android.widget.ImageView;
 
 import com.hjq.demo.R;
-import com.hjq.demo.common.MyLazyFragment;
+import com.hjq.demo.aop.SingleClick;
+import com.hjq.demo.common.MyFragment;
+import com.hjq.demo.http.glide.GlideApp;
 import com.hjq.demo.ui.activity.HomeActivity;
-import com.hjq.widget.CountdownView;
-import com.hjq.widget.SwitchButton;
+import com.hjq.widget.view.CountdownView;
+import com.hjq.widget.view.SwitchButton;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  *    author : Android 轮子哥
@@ -17,12 +19,14 @@ import butterknife.OnClick;
  *    time   : 2018/10/18
  *    desc   : 项目自定义控件展示
  */
-public final class TestFragmentB extends MyLazyFragment<HomeActivity>
+public final class TestFragmentB extends MyFragment<HomeActivity>
         implements SwitchButton.OnCheckedChangeListener {
+
+    @BindView(R.id.iv_test_circle)
+    ImageView mCircleView;
 
     @BindView(R.id.sb_test_switch)
     SwitchButton mSwitchButton;
-
     @BindView(R.id.cv_test_countdown)
     CountdownView mCountdownView;
 
@@ -36,28 +40,26 @@ public final class TestFragmentB extends MyLazyFragment<HomeActivity>
     }
 
     @Override
-    protected int getTitleId() {
-        return R.id.tb_test_b_title;
-    }
-
-    @Override
     protected void initView() {
         mSwitchButton.setOnCheckedChangeListener(this);
+
+        setOnClickListener(R.id.cv_test_countdown);
     }
 
     @Override
     protected void initData() {
-
+        GlideApp.with(this)
+                .load(R.drawable.bg_launcher)
+                .circleCrop()
+                .into(mCircleView);
     }
 
-    @OnClick(R.id.cv_test_countdown)
+    @SingleClick
+    @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.cv_test_countdown:
-                toast(getResources().getString(R.string.common_send_code_succeed));
-                break;
-            default:
-                break;
+        if (v.getId() == R.id.cv_test_countdown) {
+            toast(R.string.common_code_send_hint);
+            mCountdownView.start();
         }
     }
 
